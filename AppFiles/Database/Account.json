@@ -1,0 +1,22 @@
+﻿[
+  {
+    "UserName": "Admin",
+    "Password": "Foxconn168!",
+    "Role": 1
+  },
+  {
+    "UserName": "V0950287",
+    "Password": "123",
+    "Role": 0
+  },
+  {
+    "UserName": "tuanbinh",
+    "Password": "abc",
+    "Role": 0
+  },
+  {
+    "UserName": "test",
+    "Password": "test",
+    "Role": 0
+  }
+]
