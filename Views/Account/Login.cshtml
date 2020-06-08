@@ -1,0 +1,163 @@
+﻿@model jQueryAjaxInAsp.NETMVC.Models.UserLogin
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Landing.cshtml";
+}
+<head>
+    @Styles.Render("~/Content/css")
+    <style>
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .btn-group-vertical > .btn-group:after, .btn-group-vertical > .btn-group:before, .btn-toolbar:after, .btn-toolbar:before, .clearfix:after, .clearfix:before, .container-fluid:after, .container-fluid:before, .container:after, .container:before, .dl-horizontal dd:after, .dl-horizontal dd:before, .form-horizontal .form-group:after, .form-horizontal .form-group:before, .modal-footer:after, .modal-footer:before, .modal-header:after, .modal-header:before, .nav:after, .nav:before, .navbar-collapse:after, .navbar-collapse:before, .navbar-header:after, .navbar-header:before, .navbar:after, .navbar:before, .pager:after, .pager:before, .panel-body:after, .panel-body:before, .row:after, .row:before {
+            display: table;
+            content: " ";
+        }
+
+        :after, :before {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .btn-group-vertical > .btn-group:after, .btn-toolbar:after, .clearfix:after, .container-fluid:after, .container:after, .dl-horizontal dd:after, .form-horizontal .form-group:after, .modal-footer:after, .modal-header:after, .nav:after, .navbar-collapse:after, .navbar-header:after, .navbar:after, .pager:after, .panel-body:after, .row:after {
+            clear: both;
+        }
+
+        .btn-group-vertical > .btn-group:after, .btn-group-vertical > .btn-group:before, .btn-toolbar:after, .btn-toolbar:before, .clearfix:after, .clearfix:before, .container-fluid:after, .container-fluid:before, .container:after, .container:before, .dl-horizontal dd:after, .dl-horizontal dd:before, .form-horizontal .form-group:after, .form-horizontal .form-group:before, .modal-footer:after, .modal-footer:before, .modal-header:after, .modal-header:before, .nav:after, .nav:before, .navbar-collapse:after, .navbar-collapse:before, .navbar-header:after, .navbar-header:before, .navbar:after, .navbar:before, .pager:after, .pager:before, .panel-body:after, .panel-body:before, .row:after, .row:before {
+            display: table;
+            content: " ";
+        }
+
+        :after, :before {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #333;
+            background-color: #ebeaea;
+        }
+
+        html {
+            font-size: 10px;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+
+        .container {
+            width: 300px;
+        }
+
+        .container {
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        div {
+            display: block;
+        }
+    </style>
+</head>
+
+<div class="row">
+    <div class="alert alert-info">
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+        Press enter key or click the Submit button
+    </div>
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "bootstrap-admin-login-form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <h1>Login</h1>
+        <div class="form-group">
+            <input class="form-control" type="text" name="UserName" placeholder="UserName">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="password" name="Password" placeholder="Password">
+        </div>
+        <div class="form-group">
+            <label>
+                <input type="checkbox" name="remember_me">
+                Remember me
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary" type="submit">Submit</button>
+    }
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            // Setting focus
+            $('input[name="UserName"]').focus();
+            // Setting width of the alert box
+            var formWidth = $('.bootstrap-admin-login-form').innerWidth();
+            var alertPadding = parseInt($('.alert').css('padding'));
+            $('.alert').width(formWidth - 2 * alertPadding);
+        });
+    </script>
+}
+ 
+
+
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        <form class="form-signin">
+            <h2 class="form-signin-heading">Please sign in</h2>
+            <label for="inputEmail" class="sr-only">Email address</label>
+            @Html.EditorFor(m => m.UserName, new { htmlAttributes = new {@id= "inputEmail", @class = "form-control" } })
+            <label for="inputPassword" class="sr-only">Password</label>
+            @Html.EditorFor(m => m.PassWord, new { htmlAttributes = new {@id= "inputPassword", @class = "form-control" } })
+             <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+        <!--<div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10 ">
+                    @Html.EditorFor(m => m.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.PassWord, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(m => m.PassWord, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.PassWord, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.RememberMe, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(m => m.RememberMe)
+                        @Html.ValidationMessageFor(m => m.RememberMe, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Login" class="btn btn-default" />
+                </div>
+            </div>
+        </div> -->
+        }
+    </div>

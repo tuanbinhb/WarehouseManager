@@ -1,0 +1,194 @@
+﻿@model jQueryAjaxInAsp.NETMVC.Models.ConsumableMaterialModel
+
+@{
+    ViewBag.Title = "AddOrEditConsumable";
+    Layout = null;
+}
+
+<head>
+    <style>
+        .clearfix {
+            clear: both;
+            padding: 0;
+            margin: 0;
+            height: 5px;
+            display: block;
+        }
+
+        .control-label {
+            font-size: 11px;
+        }
+    </style>
+</head>
+@using (Html.BeginForm("AddOrEditConsumable", "ConsumableMaterial", FormMethod.Post, new { enctype = "multipart/form-data", onSubmit = "return jQueryAjaxPost(this);", data_restUrl = Url.Action("AddOrEditConsumable", "ConsumableMaterial", new { id = 0 }) }))//data-resetUrl
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.materialImagePath)
+            @Html.HiddenFor(model => model.materialRemainQuantity)
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.materialCode, new { @class = "control-label col-md-3" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.materialCode, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.materialCode)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.materialECSCode, new { @class = "control-label col-md-3" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.materialECSCode, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.materialECSCode)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.materialStorageLocation, new { @class = "control-label col-md-3" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.materialStorageLocation, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.materialStorageLocation)
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.materialName, new { @class = "control-label col-md-3" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.materialName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.materialName)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.materialSpecification, new { @class = "control-label col-md-3" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.materialSpecification, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.materialSpecification)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.materialUnit, new { @class = "control-label col-md-3" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.materialUnit, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.materialUnit)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.materialECSName, new { @class = "control-label col-md-3" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.materialECSName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.materialECSName)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.materialKind, new { @class = "control-label col-md-3" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.materialKind, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.materialKind)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.materialSupplier, new { @class = "control-label col-md-3" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.materialSupplier, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.materialSupplier)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.materialReferenceValue, new { @class = "control-label col-md-3" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.materialReferenceValue, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.materialReferenceValue)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.materialTimeCanGet, new { @class = "control-label col-md-3" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.materialTimeCanGet, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.materialTimeCanGet)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.materialQuantity, new { @class = "control-label col-md-3" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.materialQuantity, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.materialQuantity)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.materialRemark, new { @class = "control-label col-md-3" })
+                    <div class="col-md-6">
+                        @Html.TextAreaFor(model => model.materialRemark, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.materialRemark)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.materialSafety, new { @class = "control-label col-md-3" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.materialSafety, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.materialSafety)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.materialNumberRecipient, new { @class = "control-label col-md-3" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.materialNumberRecipient, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.materialNumberRecipient)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.materialImagePath, new { @class = "control-label col-md-3" })
+                    <div class="col-md-6">
+                        <img src="@Url.Content(Model.materialImagePath)" style="margin:10px" height="100" width="100" id="blah" />
+                        <input id="FileUpload" type="file" name="ImageUpload" class="image" onchange="readURL(this)" accept="image/*" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.materialGoodNumberReturn, new { @class = "control-label col-md-3" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.materialGoodNumberReturn, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.materialGoodNumberReturn)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.materialBadNumberReturn, new { @class = "control-label col-md-3" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.materialBadNumberReturn, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.materialBadNumberReturn)
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-10 col-lg-offset-1">
+                    <input type="submit" value="Submit" class="btn btn-default" />
+                    @if (!String.IsNullOrEmpty(Model.materialCode))
+                    {
+                        <a class="btn btn-success" onclick="refreshAddNewTab('@Url.Action("AddOrEditConsumable","ConsumableMaterial",new{id=0})',false)"><i class="fa fa-plus"></i> Add New</a>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+

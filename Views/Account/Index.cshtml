@@ -1,0 +1,53 @@
+﻿@model jQueryAjaxInAsp.NETMVC.Models.UserLogin
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Landing.cshtml";
+}
+
+<div class="row">
+    <div class="alert alert-info">
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+        Press enter key or click the Submit button
+    </div>
+    @using (Html.BeginForm("Index", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "bootstrap-admin-login-form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <h1>Login</h1>
+        <div class="form-group">
+            @Html.EditorFor(m => m.UserName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(m => m.PassWord, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.PassWord, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label>
+                <input type="checkbox" name="remember_me">
+                Remember me
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary" type="submit">Submit</button>
+    }
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            // Setting focus
+            $('input[name="UserName"]').focus();
+            // Setting width of the alert box
+            var formWidth = $('.bootstrap-admin-login-form').innerWidth();
+            var alertPadding = parseInt($('.alert').css('padding'));
+            $('.alert').width(formWidth - 2 * alertPadding);
+        });
+    </script>
+}
+
+
+
+

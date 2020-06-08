@@ -1,0 +1,30 @@
+﻿<!-- left, vertical navbar -->
+<div class="col-md-2 bootstrap-admin-col-left">
+    <ul class="nav navbar-collapse collapse bootstrap-admin-navbar-side">
+       
+        @Html.MenuItem("All Material", "Index", "ConsumableMaterial")
+        @Html.MenuItem("Consumable ouput", "Index", "ConsumableOutput")
+        <li>
+            <a href="#myModal" data-toggle="modal"><span class="badge pull-right"></span> Statistics</a>
+        </li>
+    </ul>
+</div>
+
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 id="myModalLabel" class="modal-title">Statistics</h4>
+            </div>
+            <div class="modal-body">
+                <p>Coming soon...</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+

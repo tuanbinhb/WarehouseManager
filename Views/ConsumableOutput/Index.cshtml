@@ -1,0 +1,88 @@
+﻿@model IEnumerable<jQueryAjaxInAsp.NETMVC.Models.ConsumableOutModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Partial("_LeftMenu")
+
+<!-- content -->
+<div class="col-md-10">
+    <div class="row">
+        <button class="btn btn-sm btn-info">Create Order</button>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="text-muted bootstrap-admin-box-title">Basic Table</div>
+            </div>
+            <div class="bootstrap-admin-panel-content">
+                <table class="table">
+                    <thead>
+                        <tr>
+
+                            <th>OrderId</th>
+                            <th>Department</th>
+                            <th>Location</th>
+                            <th>DateCreate</th>
+                            <th>Applicant</th>
+                            <th>ApplicantCode</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.OrderId)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Department)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Location)</td>
+                                <td>@Html.DisplayFor(modelItem => item.DateCreate)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Applicant)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ApplicantCode)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <button class="btn btn-sm btn-info">Create Order Detail</button>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="text-muted bootstrap-admin-box-title">Striped Table</div>
+            </div>
+            <div class="bootstrap-admin-panel-content">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Username</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@@mdo</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@@fat</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@@twitter</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

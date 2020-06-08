@@ -1,0 +1,168 @@
+﻿@model IEnumerable<jQueryAjaxInAsp.NETMVC.Models.ConsumableMaterialModel>
+
+@{
+    ViewBag.Title = "ViewAlll";
+    Layout = null;
+}
+<head>
+    <style>
+        .needbuy {
+            color:red;
+        }
+    </style>
+</head>
+<div class="row">
+    <section class="col-md-12 col-md-push-0">
+        <section>
+            <a class="btn btn-sm btn-info" href="~/AppFiles/Database/VN_NIC_Consumable_Items.xlsx">Export data to excel</a>
+            <div class="well bs-component">
+                <br />
+                <div class="row">
+                    <div >
+                        <table class="table table-bordered table-hover display nowrap"
+                               id="employeeTable"
+                               cellspacing="0"
+                               align="center"
+                               style="font-size: 12px;">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.materialCode)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.materialName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.materialECSCode)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.materialECSName)
+                                    </th>
+                                    <th>
+                                        Material Image
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.materialSpecification)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.materialUnit)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.materialStorageLocation)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.materialKind)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.materialSupplier)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.materialReferenceValue)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.materialTimeCanGet)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.materialQuantity)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.materialSafety)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.materialNumberRecipient)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.materialGoodNumberReturn)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.materialBadNumberReturn)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.materialRemainQuantity)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.materialRemark)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var item in Model)
+                                {
+                                    if (item.isDeleted) { continue; }
+                                    <tr class="@(item.needToBuyMore ? "danger" : string.Empty) ">
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.materialCode)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.materialName)
+                                        </td>
+                                        <td >
+                                            @Html.DisplayFor(modelItem => item.materialECSCode)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.materialECSName)
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Content(item.materialImagePath)" target="_blank">
+                                                <img src="@Url.Content(item.materialImagePath)" style="margin:10px" height="50" width="50" id="imagePreview" />
+                                            </a>
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.materialSpecification)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.materialUnit)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.materialStorageLocation)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.materialKind)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.materialSupplier)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.materialReferenceValue)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.materialTimeCanGet)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.materialQuantity)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.materialSafety)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.materialNumberRecipient)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.materialGoodNumberReturn)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.materialBadNumberReturn)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.materialRemainQuantity)
+                                        </td>
+                                        <td width="40">
+                                            @Html.DisplayFor(modelItem => item.materialRemark)
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-primary btn-xs" onclick="Edit('@Url.Action("AddOrEditConsumable", "ConsumableMaterial", new { id = @item.materialCode })')">Edit</a>
+                                            <a class="btn btn-danger btn-xs" onclick="Delete('@Url.Action("Delete", "ConsumableMaterial", new { id = @item.materialCode })')">Delete</a>
+                                        </td>
+                                    </tr>
+
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</div>
